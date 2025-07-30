@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tarefas Salvas</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background-color: #f4f4f9; color: #333; margin: 0; padding: 20px;
+            display: flex; justify-content: center;
+        }
+        .container {
+            width: 100%; max-width: 600px; background: #fff; padding: 30px;
+            border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        h1 { text-align: center; color: #4a4a4a; }
+        ul { list-style-type: none; padding: 0; }
+        li {
+            background: #f9f9f9; padding: 15px; border: 1px solid #eee;
+            border-radius: 5px; margin-top: 10px; display: flex;
+            justify-content: space-between; align-items: center;
+        }
+        li span { font-weight: 500; }
+        .botoes {
+            margin: 0;
+        }
+        .btn-editar {
+            padding: 10px 15px; color: white; border: none; border-radius: 5px;
+            font-size: 14px; cursor: pointer; text-decoration: none;
+            background-color: #ffc107;
+        }
+        .btn-editar:hover { background-color: #e0a800; }
+        .no-tasks { text-align: center; color: #6c757d; padding: 20px; }
+
+        .link {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+        }
+        a {
+            color: white;
+            padding: 10px;
+            text-decoration: none;
+            background-color: #007bff;
+            border-radius: 6px;
+        }
+        button {
+            padding: 10px 15px; color: white; border: none; border-radius: 5px;
+            font-size: 14px; cursor: pointer; text-decoration: none;
+            background-color: #ff0707;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Tarefas Salvas</h1>
+        <ul>
+            {% if tarefas %}
+                {% for tarefa in tarefas %} 
+                <li>
+                    <div class="data-tarefa">
+                        <span>{{ tarefa.titulo }}</span>
+                        <br>
+                        <small>Data: {{ tarefa.data }}</small>
+                    </div>
+                    <form action="excluirtarefa" method="POST" class="botoes">
+                        <input type="hidden" name="tarefa_id" value="{{ tarefa.id }}">
+
+                        <a href="{{ url_for('pagina_editar_tarefa', id=tarefa.id) }}" class="btn-editar">Editar</a>
+                        <button type="submit" class="btn-exlcuir" >Excluir</button>
+                    </form>
+                </li>
+                {% endfor %}
+            {% else %}
+                <p class="no-tasks">Nenhuma tarefa salva ainda.</p>
+            {% endif %}
+        </ul>
+        <div class="link">
+                <a href="{{url_for('homepage')}}">Pagina inicial</a>
+            </div>
+    </div>
+
+    
+</body>
+</html>
