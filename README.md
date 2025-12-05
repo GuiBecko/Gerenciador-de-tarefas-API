@@ -1,4 +1,4 @@
-# Gerenciador-de-tarefas-API
+# Gerenciador-de-tarefas
 
 Este é um projeto simples de uma aplicação web para gerenciamento de uma lista de tarefas (To-Do List), desenvolvido com Flask em Python. A aplicação permite criar, visualizar, editar e excluir tarefas de forma intuitiva através de uma interface web.
 
